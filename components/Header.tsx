@@ -15,7 +15,6 @@ const navLinks = [
 
 export default function Header() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -30,23 +29,19 @@ export default function Header() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  const headerBg = isHome
-    ? scrolled
-      ? "bg-[#EFEEED] shadow-sm"
-      : "bg-transparent"
-    : "bg-[#EFEEED]";
+  const headerBg = scrolled ? "header-scrolled" : "bg-transparent";
 
   const logoSrc = "/uploads/2022/04/BarcelonaConstructions.webp";
 
   return (
     <>
       <header
-        className={`${isHome ? "absolute" : "relative"} top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
-        style={{ padding: "4px 70px" }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
+        style={{ paddingLeft: 70, paddingRight: 70 }}
       >
-        <div className="flex items-center justify-between" style={{ minHeight: 60 }}>
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
+          <Link href="/" className="flex-shrink-0 py-[22px]">
             <Image
               src={logoSrc}
               alt="Barcelona Constructions"
@@ -59,14 +54,16 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-10">
-            {navLinks.map((link) => (
+          <nav className="hidden lg:flex items-center" style={{ gap: 0 }}>
+            {navLinks.map((link, i) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`nav-link ${pathname === link.href ? "active" : ""} ${
-                  isHome && !scrolled ? "!text-white [&::after]:bg-white" : ""
-                }`}
+                className={`nav-link ${pathname === link.href ? "active" : ""}`}
+                style={{
+                  marginLeft: i === 0 ? 0 : 29,
+                  marginRight: i === navLinks.length - 1 ? 0 : 29,
+                }}
               >
                 {link.label}
               </Link>
@@ -79,15 +76,9 @@ export default function Header() {
             onClick={() => setMobileOpen(true)}
             aria-label="Open menu"
           >
-            <span
-              className={`block w-6 h-0.5 transition-colors ${isHome && !scrolled ? "bg-white" : "bg-[#5F6160]"}`}
-            />
-            <span
-              className={`block w-6 h-0.5 transition-colors ${isHome && !scrolled ? "bg-white" : "bg-[#5F6160]"}`}
-            />
-            <span
-              className={`block w-4 h-0.5 transition-colors ${isHome && !scrolled ? "bg-white" : "bg-[#5F6160]"}`}
-            />
+            <span className="block w-6 h-0.5 bg-[#5F6160]" />
+            <span className="block w-6 h-0.5 bg-[#5F6160]" />
+            <span className="block w-4 h-0.5 bg-[#5F6160]" />
           </button>
         </div>
       </header>

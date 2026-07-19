@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Jost, Parisienne, Libre_Caslon_Text } from "next/font/google";
+import { Jost, Parisienne, Libre_Caslon_Text, Lexend } from "next/font/google";
 import "./globals.css";
 
 const jost = Jost({
@@ -20,6 +20,13 @@ const libreCaslon = Libre_Caslon_Text({
   subsets: ["latin"],
   variable: "--font-libre-caslon-var",
   weight: ["400", "700"],
+  display: "swap",
+});
+
+const lexend = Lexend({
+  subsets: ["latin"],
+  variable: "--font-lexend-var",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -56,7 +63,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jost.variable} ${parisienne.variable} ${libreCaslon.variable}`}
+      className={`${jost.variable} ${parisienne.variable} ${libreCaslon.variable} ${lexend.variable}`}
     >
       <body className="min-h-screen flex flex-col">{children}</body>
     </html>

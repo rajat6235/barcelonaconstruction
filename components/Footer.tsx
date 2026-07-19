@@ -6,7 +6,7 @@ const quickLinks = [
   { href: "/services-v1", label: "Services" },
   { href: "/about-us", label: "About Us" },
   { href: "/portfolio-grid-no-space", label: "Projects" },
-  { href: "/contact-us", label: "Contact" },
+  { href: "/contact-us", label: "Contacts" },
 ];
 
 export default function Footer() {
@@ -64,7 +64,7 @@ export default function Footer() {
               color: "#BBBBBC",
             }}
           >
-            © {new Date().getFullYear()} Barcelona Constructions. All Rights Reserved.
+            © by Rajat. All Rights Reserved.
           </p>
           <nav className="flex items-center gap-6">
             <Link
@@ -111,15 +111,13 @@ function FooterLeft() {
           marginBottom: 23,
         }}
       >
-        4801 Wilshire Blvd Suite 110
-        <br />
-        Los Angeles, CA 90010, USA
+        Unit 107, 1222 Alberta Ave, Saskatoon, SK S7K 1R4
       </p>
 
       {/* Phone */}
       <div style={{ marginBottom: 22 }}>
         <a
-          href="tel:+12132453010"
+          href="tel:+13067171994"
           className="footer-contact-link"
           style={{
             fontSize: 18,
@@ -129,14 +127,14 @@ function FooterLeft() {
             display: "block",
           }}
         >
-          +1 (213) 245-3010
+          +1 (306) 717-1994
         </a>
       </div>
 
       {/* Email */}
       <div>
         <a
-          href="mailto:contact@barcelona.com"
+          href="mailto:contact@barcelonaconstruction.com"
           className="footer-contact-link"
           style={{
             fontSize: 18,
@@ -146,7 +144,7 @@ function FooterLeft() {
             display: "block",
           }}
         >
-          contact@barcelona.com
+          contact@barcelonaconstruction.com
         </a>
       </div>
     </div>

@@ -61,7 +61,7 @@ export default function ContactPage() {
                   <div key={i} className="flex gap-4 mb-8">
                     <div
                       className="flex-shrink-0 flex items-center justify-center"
-                      style={{ width: 48, height: 48, backgroundColor: "#00776E", borderRadius: "50%", color: "#fff" }}
+                      style={{ width: 48, height: 48, backgroundColor: "#095B67", borderRadius: "50%", color: "#fff" }}
                     >
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="white">{item.icon}</svg>
                     </div>

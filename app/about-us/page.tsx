@@ -89,7 +89,7 @@ export default function AboutPage() {
                     <div key={stat.label}>
                       <div
                         className="font-heading"
-                        style={{ fontSize: 42, fontWeight: 400, color: "#00776E", lineHeight: 1 }}
+                        style={{ fontSize: 42, fontWeight: 400, color: "#095B67", lineHeight: 1 }}
                       >
                         {stat.number}
                       </div>

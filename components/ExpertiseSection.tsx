@@ -2,39 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 const skills = [
-  { title: "Interior Design", percent: 92 },
-  { title: "Architecture & Planning", percent: 85 },
-  { title: "Construction Management", percent: 78 },
-];
-
-const teamMembers = [
-  {
-    name: "Jonathan Smith",
-    role: "Lead Architect",
-    image: "/uploads/2022/04/team1.jpg",
-    socials: ["#", "#", "#"],
-  },
-  {
-    name: "Emily Clarke",
-    role: "Interior Designer",
-    image: "/uploads/2022/04/team2.jpg",
-    socials: ["#", "#", "#"],
-  },
-  {
-    name: "Michael Torres",
-    role: "Project Manager",
-    image: "/uploads/2022/04/team3.jpg",
-    socials: ["#", "#", "#"],
-  },
-  {
-    name: "Sarah Johnson",
-    role: "Senior Architect",
-    image: "/uploads/2022/04/team4.jpg",
-    socials: ["#", "#", "#"],
-  },
+  { title: "Space Planning", percent: 70 },
+  { title: "Aesthetics & Styling", percent: 65 },
+  { title: "Material & Finishes", percent: 80 },
 ];
 
 function ProgressBar({ title, percent }: { title: string; percent: number }) {
@@ -49,7 +21,7 @@ function ProgressBar({ title, percent }: { title: string; percent: number }) {
           observer.disconnect();
         }
       },
-      { threshold: 0.4 }
+      { threshold: 0.3 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -60,13 +32,13 @@ function ProgressBar({ title, percent }: { title: string; percent: number }) {
       <div className="progress-bar-header">
         <span
           className="font-heading"
-          style={{ color: "#00776E", fontSize: 18, lineHeight: "26px" }}
+          style={{ color: "#095B67", fontSize: 18, lineHeight: "26px" }}
         >
           {title}
         </span>
         <span
           className="font-heading"
-          style={{ color: "#00776E", fontSize: 16 }}
+          style={{ color: "#095B67", fontSize: 16 }}
         >
           {percent}%
         </span>
@@ -82,14 +54,12 @@ function ProgressBar({ title, percent }: { title: string; percent: number }) {
 }
 
 export default function ExpertiseSection() {
-  const [activeTeam, setActiveTeam] = useState(0);
-
   return (
     <section
       style={{
         backgroundColor: "#EFEEED",
-        paddingTop: 146,
-        paddingBottom: 240,
+        paddingTop: 140,
+        paddingBottom: 140,
         position: "relative",
         overflow: "hidden",
       }}
@@ -121,138 +91,77 @@ export default function ExpertiseSection() {
         }}
         aria-hidden="true"
       >
-        Studio
+        Interior
       </span>
 
       <div className="container-custom relative" style={{ zIndex: 2 }}>
-        {/* Section heading */}
+        {/* Row 1: heading + body (left 50%) | progress bars (right 50%) */}
         <div
-          className="mb-16"
-          style={{ paddingBottom: 120, position: "relative", zIndex: 2 }}
+          className="flex flex-col lg:flex-row gap-16"
+          style={{ paddingBottom: 100 }}
         >
-          <div className="flex flex-col lg:flex-row gap-16">
-            {/* Left: skills */}
-            <div style={{ flex: "0 0 38.144%", maxWidth: "38.144%", paddingRight: 100 }}>
-              <p className="sub-label mb-4">My Expertise</p>
-              <h2
-                className="font-heading mb-6"
-                style={{
-                  fontSize: "clamp(28px, 3.5vw, 48px)",
-                  lineHeight: "1.15",
-                  color: "#191D1B",
-                }}
-              >
-                Skills We&apos;re Bringing to the Table
-              </h2>
-              <p className="mb-10" style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.7" }}>
-                We&apos;re passionate about what we do and always looking for the best approach to deliver creative solutions.
-              </p>
+          <div style={{ flex: "0 0 50%", paddingRight: 60 }}>
+            <p className="sub-label mb-4">Our expertise</p>
+            <h2
+              className="font-heading mb-6"
+              style={{
+                fontSize: "clamp(28px, 3.5vw, 48px)",
+                lineHeight: "1.15",
+                color: "#191D1B",
+              }}
+            >
+              Our Work &amp; Art
+            </h2>
+            <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.7" }}>
+              Bringing together ancient craftsmanship and contemporary construction techniques,
+              our mission is to build a better way to live and inspire positive change.
+            </p>
+          </div>
 
-              {skills.map((skill) => (
-                <ProgressBar key={skill.title} title={skill.title} percent={skill.percent} />
-              ))}
-            </div>
+          <div style={{ flex: "0 0 50%", paddingTop: 8 }}>
+            {skills.map((skill) => (
+              <ProgressBar key={skill.title} title={skill.title} percent={skill.percent} />
+            ))}
+          </div>
+        </div>
 
-            {/* Right: team slider */}
-            <div style={{ flex: "0 0 61.856%", maxWidth: "61.856%" }}>
-              <div className="relative">
-                {/* Team card */}
-                <div className="flex gap-8 items-start">
-                  <div className="flex-shrink-0" style={{ width: 220 }}>
-                    <Image
-                      src={teamMembers[activeTeam].image}
-                      alt={teamMembers[activeTeam].name}
-                      width={220}
-                      height={290}
-                      className="object-cover"
-                      style={{ display: "block", objectPosition: "top" }}
-                    />
-                  </div>
-                  <div className="flex-1 pt-4">
-                    <h3
-                      className="font-heading mb-1"
-                      style={{ fontSize: 26, lineHeight: "36px", color: "#191D1B" }}
-                    >
-                      {teamMembers[activeTeam].name}
-                    </h3>
-                    <p
-                      className="mb-6 team-role"
-                      style={{ fontSize: 16, fontWeight: 300, color: "#5F6160", lineHeight: "32px" }}
-                    >
-                      {teamMembers[activeTeam].role}
-                    </p>
-                    {/* Social icons */}
-                    <div className="flex gap-3 mb-8">
-                      {["f", "t", "in"].map((s) => (
-                        <a
-                          key={s}
-                          href="#"
-                          className="social-icon"
-                          aria-label={`${s} social link`}
-                        >
-                          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-                            <circle cx="6" cy="6" r="4" />
-                          </svg>
-                        </a>
-                      ))}
-                    </div>
+        {/* Row 2: founder photo (left 38%) | founder's vision text (right 62%) */}
+        <div className="flex flex-col lg:flex-row gap-16 items-start">
+          <div style={{ flex: "0 0 38%", maxWidth: "38%" }}>
+            <Image
+              src="/uploads/2025/03/Dilchahl.jpeg"
+              alt="Dilbagh Singh Chahal — Founder & CEO"
+              width={380}
+              height={480}
+              className="object-cover w-full"
+              style={{ display: "block", objectPosition: "top" }}
+            />
+          </div>
 
-                    {/* Sub-heading for team section (right column) */}
-                    <p className="sub-label mb-4">Our Experts</p>
-                    <h4
-                      className="font-heading mb-4"
-                      style={{ fontSize: "clamp(22px, 2.5vw, 34px)", lineHeight: "1.2", color: "#191D1B" }}
-                    >
-                      Meet Our Creative Team
-                    </h4>
-                    <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.7", marginBottom: 24 }}>
-                      Our team of experienced architects and designers will partner with you to create spaces you&apos;ll love.
-                    </p>
-                    <Link href="/about-us" className="btn-primary" style={{ display: "inline-block" }}>
-                      Meet the Team
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Team navigation arrows */}
-                <div className="flex gap-3 mt-8">
-                  <button
-                    onClick={() => setActiveTeam((p) => (p - 1 + teamMembers.length) % teamMembers.length)}
-                    className="flex items-center justify-center"
-                    style={{
-                      width: 44,
-                      height: 44,
-                      border: "1px solid rgba(41,43,46,0.2)",
-                      background: "transparent",
-                      cursor: "pointer",
-                      transition: "all 0.3s",
-                    }}
-                    aria-label="Previous team member"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M10 3L5 8l5 5" stroke="#191D1B" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={() => setActiveTeam((p) => (p + 1) % teamMembers.length)}
-                    className="flex items-center justify-center"
-                    style={{
-                      width: 44,
-                      height: 44,
-                      border: "1px solid rgba(41,43,46,0.2)",
-                      background: "transparent",
-                      cursor: "pointer",
-                      transition: "all 0.3s",
-                    }}
-                    aria-label="Next team member"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M6 3l5 5-5 5" stroke="#191D1B" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
+          <div style={{ flex: 1, paddingTop: 16 }}>
+            <p className="sub-label mb-4">Our Experts</p>
+            <h3
+              className="font-heading mb-6"
+              style={{
+                fontSize: "clamp(24px, 2.8vw, 38px)",
+                lineHeight: "1.2",
+                color: "#191D1B",
+              }}
+            >
+              Founder&apos;s Vision
+            </h3>
+            <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.7", marginBottom: 32 }}>
+              Under the visionary leadership of Dilbagh Singh Chahal, our founder and CEO,
+              Dil Chahal Constructions aims to set new benchmarks in the industry.
+              Dil Chahal&apos;s forward-thinking approach and unwavering commitment to quality
+              have been the driving forces behind our innovative solutions and exceptional service standards.
+            </p>
+            <p style={{ fontWeight: 500, color: "#191D1B", fontSize: 16, lineHeight: "1.5" }}>
+              Dilbagh Singh Chahal
+            </p>
+            <p style={{ fontWeight: 300, color: "#5F6160", fontSize: 14 }}>
+              Founder &amp; CEO
+            </p>
           </div>
         </div>
       </div>

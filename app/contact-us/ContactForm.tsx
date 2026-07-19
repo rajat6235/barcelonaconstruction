@@ -22,8 +22,8 @@ export default function ContactForm() {
       <div style={{ backgroundColor: "#EFEEED", padding: 60, textAlign: "center" }}>
         <div className="mb-6">
           <svg width="60" height="60" viewBox="0 0 24 24" fill="none" className="mx-auto">
-            <circle cx="12" cy="12" r="11" stroke="#00776E" strokeWidth="1.5" />
-            <path d="M7 12l4 4 6-7" stroke="#00776E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="12" cy="12" r="11" stroke="#095B67" strokeWidth="1.5" />
+            <path d="M7 12l4 4 6-7" stroke="#095B67" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
         <h3 className="font-heading mb-3" style={{ fontSize: 28, color: "#191D1B" }}>
