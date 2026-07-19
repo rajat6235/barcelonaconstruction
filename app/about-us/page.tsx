@@ -5,26 +5,19 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import ScrollToTop from "@/components/ScrollToTop";
+import { Reveal } from "@/components/Reveal";
+import AnimatedCounter from "@/components/AnimatedCounter";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn about Barcelona Constructions — our story, team, and commitment to quality craftsmanship.",
+  description: "Learn about Barcelona Constructions — our story, vision, and commitment to purposeful interior design.",
 };
 
-const teamMembers = [
-  { name: "Jonathan Smith", role: "Lead Architect", image: "/uploads/2022/04/team1.jpg" },
-  { name: "Emily Clarke", role: "Interior Designer", image: "/uploads/2022/04/team2.jpg" },
-  { name: "Michael Torres", role: "Project Manager", image: "/uploads/2022/04/team3.jpg" },
-  { name: "Sarah Johnson", role: "Senior Architect", image: "/uploads/2022/04/team4.jpg" },
-  { name: "David Park", role: "3D Visualizer", image: "/uploads/2022/04/team5.jpg" },
-  { name: "Anna White", role: "Interior Consultant", image: "/uploads/2022/04/team6.jpg" },
-];
-
-const stats = [
-  { number: "15+", label: "Years Experience" },
-  { number: "380+", label: "Projects Completed" },
-  { number: "240+", label: "Happy Clients" },
-  { number: "32", label: "Awards Won" },
+const whyChooseUs = [
+  "High-Quality Craftsmanship",
+  "Tailored Design Solutions",
+  "Experienced Designers",
+  "Transparent Pricing",
 ];
 
 export default function AboutPage() {
@@ -34,209 +27,306 @@ export default function AboutPage() {
       <main>
         <PageHero
           title="About Us"
+          bgImage="/uploads/2022/04/top_page_about.jpg"
           breadcrumbs={[
             { label: "Home", href: "/" },
             { label: "About Us" },
           ]}
         />
 
-        {/* About section */}
-        <section style={{ backgroundColor: "#fff", paddingTop: 150, paddingBottom: 150 }}>
+        {/* ── INTRO SECTION ── */}
+        <section style={{ backgroundColor: "#fff", paddingTop: 120, paddingBottom: 100 }}>
           <div className="container-custom">
-            <div className="flex flex-col lg:flex-row gap-16 items-center">
-              {/* Images */}
-              <div className="flex-1 flex gap-4">
-                <div className="flex flex-col gap-4 mt-16">
-                  <Image
-                    src="/uploads/2022/04/about_image1.jpg"
-                    alt="Our team at work"
-                    width={200}
-                    height={260}
-                    className="object-cover"
-                  />
-                </div>
-                <Image
-                  src="/uploads/2022/04/about_image2.jpg"
-                  alt="Interior design project"
-                  width={280}
-                  height={380}
-                  className="object-cover flex-1"
-                  style={{ objectPosition: "center" }}
-                />
-              </div>
-
-              {/* Text */}
-              <div className="flex-1 lg:pl-8">
-                <p className="sub-label mb-4">About Barcelona Constructions</p>
+            <div className="flex flex-col lg:flex-row gap-20 items-start">
+              {/* Left: text */}
+              <Reveal direction="left" className="flex-1">
+                <p className="sub-label mb-4" style={{ color: "#AB6447" }}>About Us</p>
                 <h2
                   className="font-heading mb-6"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 48px)", lineHeight: "1.15", color: "#191D1B" }}
+                  style={{ fontSize: "clamp(32px, 4.5vw, 60px)", lineHeight: "1.1", color: "#191D1B" }}
                 >
-                  We Study the Best Way to Communicate a Product
+                  It&apos;s time for a new perspective on design.
                 </h2>
-                <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.75", marginBottom: 24 }}>
-                  Uniting modern construction methods with a deep respect for traditional craftsmanship,
-                  everything we make is designed to endure and bring joy for generations to come.
+                <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.75", maxWidth: 520 }}>
+                  We collaborate with design enthusiasts and experts to craft interiors that blend functionality with timeless aesthetics—where every detail serves a purpose and elevates the space.
                 </p>
-                <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.75", marginBottom: 40 }}>
-                  Working with the beauty and durability of natural materials, our design-led structures
-                  invite people to connect with their spaces in a meaningful way.
+              </Reveal>
+
+              {/* Right: image */}
+              <Reveal direction="right" delay={120} className="flex-1">
+                <Image
+                  src="/uploads/2022/04/about_image2.jpg"
+                  alt="Our design studio"
+                  width={560}
+                  height={420}
+                  className="w-full object-cover"
+                  style={{ display: "block" }}
+                />
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ── WHY CHOOSE US ── */}
+        <section style={{ backgroundColor: "#fff", paddingBottom: 120 }}>
+          <div className="container-custom">
+            <div className="flex flex-col lg:flex-row gap-20 items-start">
+              {/* Left: image */}
+              <Reveal direction="left" className="flex-1 hidden lg:block">
+                <Image
+                  src="/uploads/2022/04/about_image1.jpg"
+                  alt="Craftsmanship detail"
+                  width={520}
+                  height={600}
+                  className="w-full object-cover"
+                  style={{ display: "block" }}
+                />
+              </Reveal>
+
+              {/* Right: content */}
+              <Reveal direction="right" delay={100} className="flex-1">
+                <p className="sub-label mb-4">Why Choose Us</p>
+                <h2
+                  className="font-heading mb-5"
+                  style={{ fontSize: "clamp(28px, 3.5vw, 46px)", lineHeight: "1.2", color: "#191D1B" }}
+                >
+                  We Deliver Beautiful, Purposeful Spaces
+                </h2>
+                <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.75", marginBottom: 32 }}>
+                  Thoughtful design takes time, care, and expertise. Like great interiors, it&apos;s about more than appearance—it&apos;s about how it makes you feel.
                 </p>
 
-                {/* Stats */}
-                <div className="grid grid-cols-2 gap-8 mb-10">
-                  {stats.map((stat) => (
+                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 40px" }}>
+                  {whyChooseUs.map((item, i) => (
+                    <li key={i} className="flex items-center gap-3" style={{ paddingBottom: 14, borderBottom: "1px solid rgba(0,0,0,0.07)", marginBottom: 14 }}>
+                      <span
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: "50%",
+                          backgroundColor: "#095B67",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                      <span style={{ fontWeight: 400, color: "#191D1B", fontSize: 15 }}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link href="/services-v1" className="btn-primary">
+                  Our Services
+                </Link>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ── STUDIO IN NUMBERS ── */}
+        <section style={{ backgroundColor: "#fff", position: "relative", overflow: "hidden", padding: "0" }}>
+          <div className="flex items-stretch">
+            {/* Left image */}
+            <div className="hidden lg:block relative overflow-hidden" style={{ flex: "0 0 26%" }}>
+              <Image
+                src="/uploads/2022/04/faq_studio_1.jpg"
+                alt="Studio detail"
+                width={400}
+                height={500}
+                className="object-cover w-full h-full"
+                style={{ display: "block" }}
+              />
+            </div>
+
+            {/* Center content */}
+            <div style={{ flex: 1, padding: "100px 80px", backgroundColor: "#EFEEED" }}>
+              <Reveal direction="up">
+                <p className="sub-label mb-4">Studio in Numbers</p>
+                <h2
+                  className="font-heading mb-4"
+                  style={{ fontSize: "clamp(28px, 3.5vw, 46px)", lineHeight: "1.2", color: "#191D1B" }}
+                >
+                  Crafting Beautiful Spaces, Backed by Experience
+                </h2>
+                <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.7", marginBottom: 48, maxWidth: 480 }}>
+                  Designing a timeless interior takes vision, skill, and dedication—our numbers reflect the passion we bring to every project.
+                </p>
+
+                <div className="flex gap-12 flex-wrap mb-12">
+                  {[
+                    { target: 346, suffix: "+", label: "Projects Completed" },
+                    { target: 98, suffix: "%", label: "Client Satisfaction Rate" },
+                    { target: 7, suffix: "+", label: "Years Experience" },
+                  ].map((stat) => (
                     <div key={stat.label}>
                       <div
                         className="font-heading"
-                        style={{ fontSize: 42, fontWeight: 400, color: "#095B67", lineHeight: 1 }}
+                        style={{ fontSize: "clamp(44px, 5vw, 64px)", fontWeight: 400, color: "#095B67", lineHeight: 1 }}
                       >
-                        {stat.number}
+                        <AnimatedCounter target={stat.target} suffix={stat.suffix} />
                       </div>
-                      <div style={{ fontWeight: 300, color: "#5F6160", fontSize: 14, marginTop: 4 }}>
+                      <div style={{ fontWeight: 300, color: "#5F6160", fontSize: 14, marginTop: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>
                         {stat.label}
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <Link href="/contact-us" className="btn-primary">
-                  Contact Us
+                <Link href="/portfolio-grid-no-space" className="btn-primary">
+                  View Our Cases
                 </Link>
-              </div>
+              </Reveal>
+            </div>
+
+            {/* Right image */}
+            <div className="hidden lg:block relative overflow-hidden" style={{ flex: "0 0 26%" }}>
+              <Image
+                src="/uploads/2022/04/faq_studio_2.jpg"
+                alt="Studio space"
+                width={400}
+                height={500}
+                className="object-cover w-full h-full"
+                style={{ display: "block" }}
+              />
             </div>
           </div>
         </section>
 
-        {/* Quote / Mission */}
+        {/* ── BEST FOR YOU ── */}
         <section style={{ backgroundColor: "#2F2F2F", paddingTop: 100, paddingBottom: 100 }}>
-          <div className="container-custom text-center">
-            <blockquote
-              className="font-heading"
-              style={{
-                fontSize: "clamp(22px, 3vw, 38px)",
-                fontStyle: "italic",
-                color: "#ffffff",
-                lineHeight: "1.5",
-                maxWidth: 760,
-                margin: "0 auto",
-              }}
-            >
-              &ldquo;We create buildings, furniture and interiors that connect people with the rhythms of nature.&rdquo;
-            </blockquote>
-          </div>
-        </section>
-
-        {/* Team section */}
-        <section style={{ backgroundColor: "#EFEEED", paddingTop: 150, paddingBottom: 150 }}>
           <div className="container-custom">
-            <div className="text-center mb-16">
-              <p className="sub-label mb-4">Our Team</p>
-              <h2
-                className="font-heading"
-                style={{ fontSize: "clamp(28px, 4vw, 52px)", lineHeight: "1.15", color: "#191D1B" }}
-              >
-                Meet Our Creative Team
-              </h2>
-            </div>
+            <Reveal direction="up">
+              <div className="text-center mb-16">
+                <p className="sub-label mb-4" style={{ color: "rgba(255,255,255,0.7)" }}>Best for You</p>
+                <h2
+                  className="font-heading"
+                  style={{ fontSize: "clamp(28px, 3.5vw, 46px)", lineHeight: "1.2", color: "#ffffff" }}
+                >
+                  Designs That Inspire, Spaces That Reflect You
+                </h2>
+                <p style={{ fontWeight: 300, color: "rgba(255,255,255,0.55)", lineHeight: "1.7", maxWidth: 560, margin: "16px auto 0" }}>
+                  We aim to shape trends, not follow them—merging creativity, function, and emotion in every design.
+                </p>
+              </div>
+            </Reveal>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-              {teamMembers.map((member) => (
-                <div key={member.name} className="text-center group">
-                  <div className="overflow-hidden mb-4">
+            <div className="flex flex-col lg:flex-row gap-8">
+              {[
+                {
+                  image: "/uploads/2022/04/faq_studio_3.jpg",
+                  label: "3D Visualization",
+                  desc: "Experience a lifelike 3D view of your future space, down to the finest detail.",
+                  delay: 0,
+                },
+                {
+                  image: "/uploads/2022/04/about_image1.jpg",
+                  label: "Individual Project",
+                  desc: "Every interior is crafted uniquely—reflecting your style, needs, and story.",
+                  delay: 150,
+                },
+              ].map((card, i) => (
+                <Reveal key={i} direction="up" delay={card.delay} className="flex-1">
+                  <div className="project-card" style={{ height: 380 }}>
                     <Image
-                      src={member.image}
-                      alt={member.name}
-                      width={160}
-                      height={200}
-                      className="object-cover w-full transition-transform duration-500 group-hover:scale-105"
-                      style={{ objectPosition: "top" }}
+                      src={card.image}
+                      alt={card.label}
+                      fill
+                      className="object-cover"
                     />
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: "linear-gradient(to top, rgba(9,27,25,0.85) 0%, transparent 60%)",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-end",
+                        padding: 32,
+                        zIndex: 2,
+                      }}
+                    >
+                      <h3
+                        className="font-heading mb-2"
+                        style={{ fontSize: 24, color: "#ffffff", lineHeight: "1.3" }}
+                      >
+                        {card.label}
+                      </h3>
+                      <p style={{ fontWeight: 300, color: "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: "1.6" }}>
+                        {card.desc}
+                      </p>
+                    </div>
                   </div>
-                  <h3
-                    className="font-heading mb-1"
-                    style={{ fontSize: 18, lineHeight: "26px", color: "#191D1B" }}
-                  >
-                    {member.name}
-                  </h3>
-                  <p style={{ fontSize: 14, fontWeight: 300, color: "#5F6160" }}>
-                    {member.role}
-                  </p>
-                  {/* Social icons */}
-                  <div className="flex justify-center gap-2 mt-3">
-                    {["#", "#", "#"].map((_, i) => (
-                      <a key={i} href="#" className="social-icon" style={{ width: 28, height: 28 }}>
-                        <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
-                          <circle cx="5" cy="5" r="3" />
-                        </svg>
-                      </a>
-                    ))}
-                  </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        {/* FAQ section */}
-        <section style={{ backgroundColor: "#fff", paddingTop: 150, paddingBottom: 150 }}>
+        {/* ── FOUNDER'S VISION ── */}
+        <section style={{ backgroundColor: "#fff", paddingTop: 100, paddingBottom: 100 }}>
           <div className="container-custom">
-            <div className="flex flex-col lg:flex-row gap-16">
-              <div className="flex-1">
-                <p className="sub-label mb-4">FAQ</p>
-                <h2
-                  className="font-heading mb-10"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: "1.15", color: "#191D1B" }}
-                >
-                  Frequently Asked Questions
-                </h2>
-
-                {[
-                  {
-                    q: "How long does a typical project take?",
-                    a: "Project timelines vary based on scope and complexity. A standard interior design project typically takes 8–16 weeks from concept to completion.",
-                  },
-                  {
-                    q: "Do you work on both residential and commercial projects?",
-                    a: "Yes, we work across both residential and commercial sectors, bringing the same level of care and attention to detail to every project.",
-                  },
-                  {
-                    q: "What is your design process?",
-                    a: "We begin with a discovery meeting to understand your vision, followed by concept development, design presentation, refinement, and finally build-out.",
-                  },
-                  {
-                    q: "Can you work within a fixed budget?",
-                    a: "Absolutely. We're experienced at delivering exceptional results within budget constraints and will advise you on where to invest for maximum impact.",
-                  },
-                ].map((item, i) => (
-                  <details
-                    key={i}
-                    className="border-b"
-                    style={{ borderColor: "rgba(41,43,46,0.1)", paddingBottom: 20, marginBottom: 20 }}
-                  >
-                    <summary
-                      className="cursor-pointer font-heading"
-                      style={{ fontSize: 18, color: "#191D1B", lineHeight: "1.4", listStyle: "none" }}
-                    >
-                      {item.q}
-                    </summary>
-                    <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.7", marginTop: 12 }}>
-                      {item.a}
-                    </p>
-                  </details>
-                ))}
-              </div>
-
-              <div className="flex-1 hidden lg:block">
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+              {/* Image */}
+              <Reveal direction="left" className="flex-shrink-0">
                 <Image
-                  src="/uploads/2022/04/faq_studio_1.jpg"
-                  alt="Our studio"
-                  width={520}
-                  height={600}
-                  className="object-cover w-full"
+                  src="/uploads/2022/04/team_slide_1.jpg"
+                  alt="Dilbagh Singh Chahal, CEO"
+                  width={340}
+                  height={420}
+                  className="object-cover"
+                  style={{ display: "block" }}
                 />
-              </div>
+              </Reveal>
+
+              {/* Content */}
+              <Reveal direction="right" delay={100} className="flex-1">
+                <p className="sub-label mb-4">Leadership</p>
+                <h2
+                  className="font-heading mb-2"
+                  style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: "1.2", color: "#191D1B" }}
+                >
+                  Founder&apos;s Vision
+                </h2>
+                <p
+                  style={{ fontWeight: 500, fontSize: 14, color: "#AB6447", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 24 }}
+                >
+                  Dilbagh Singh Chahal — CEO
+                </p>
+                <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.8", marginBottom: 32 }}>
+                  Under the visionary leadership of Dilbagh Singh Chahal, our founder and CEO, Barcelona Constructions aims to set new benchmarks in the industry. Dil Chahal&apos;s forward-thinking approach and unwavering commitment to quality have been the driving forces behind our innovative solutions and exceptional service standards.
+                </p>
+              </Reveal>
             </div>
+          </div>
+        </section>
+
+        {/* ── LET'S WORK TOGETHER ── */}
+        <section style={{ backgroundColor: "#095B67", paddingTop: 100, paddingBottom: 100 }}>
+          <div className="container-custom text-center">
+            <Reveal direction="up">
+              <p className="sub-label mb-4" style={{ color: "rgba(255,255,255,0.7)" }}>Let&apos;s Work Together</p>
+              <h2
+                className="font-heading mb-5"
+                style={{ fontSize: "clamp(28px, 4vw, 52px)", lineHeight: "1.2", color: "#ffffff" }}
+              >
+                Get Incredible Interior Design Right Now!
+              </h2>
+              <p style={{ fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: "1.7", maxWidth: 540, margin: "0 auto 40px" }}>
+                At every stage, we could supervise your project — controlling all the details and consulting the builders.
+              </p>
+              <Link
+                href="/contact-us"
+                className="btn-primary"
+                style={{ backgroundColor: "#ffffff", color: "#095B67" }}
+              >
+                Get In Touch
+              </Link>
+            </Reveal>
           </div>
         </section>
       </main>

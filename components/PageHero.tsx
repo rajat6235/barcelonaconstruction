@@ -1,14 +1,54 @@
+import Image from "next/image";
 import Link from "next/link";
 
 interface PageHeroProps {
   title: string;
   breadcrumbs?: { label: string; href?: string }[];
+  bgImage?: string;
 }
 
-export default function PageHero({ title, breadcrumbs }: PageHeroProps) {
+export default function PageHero({ title, breadcrumbs, bgImage = "/uploads/2022/04/top_page.jpg" }: PageHeroProps) {
   return (
-    <section className="page-title-section">
-      <div className="container-custom">
+    <section
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "420px",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {/* Background image */}
+      <Image
+        src={bgImage}
+        alt=""
+        fill
+        className="object-cover"
+        style={{ objectPosition: "center" }}
+        priority
+      />
+
+      {/* Dark overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: "rgba(15,20,18,0.42)",
+          zIndex: 1,
+        }}
+      />
+
+      {/* Content */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          textAlign: "center",
+          padding: "0 30px",
+        }}
+      >
         <h1
           className="font-heading"
           style={{
@@ -21,6 +61,7 @@ export default function PageHero({ title, breadcrumbs }: PageHeroProps) {
         >
           {title}
         </h1>
+
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav className="breadcrumb" aria-label="Breadcrumb">
             {breadcrumbs.map((crumb, i) => (
