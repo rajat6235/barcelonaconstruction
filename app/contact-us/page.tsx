@@ -64,18 +64,18 @@ export default function ContactPage() {
         <section style={{ backgroundColor: "#fff", paddingTop: 100, paddingBottom: 80 }}>
           <div className="container-custom">
             <Reveal direction="up">
-              <div className="flex flex-col lg:flex-row gap-10 items-start mb-16">
+              <div className="flex flex-col lg:flex-row gap-12 items-start mb-16">
                 <div style={{ flex: "0 0 auto" }}>
-                  <p className="sub-label mb-3">Find Us</p>
+                  <p className="sub-label mb-4">Find Us</p>
                   <h2
                     className="font-heading"
-                    style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: "1.15", color: "#191D1B" }}
+                    style={{ fontSize: "clamp(32px, 4vw, 58px)", lineHeight: "1.08", color: "#191D1B" }}
                   >
                     Our Office Address
                   </h2>
                 </div>
-                <div style={{ flex: 1, paddingTop: 8, maxWidth: 440 }}>
-                  <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.8" }}>
+                <div style={{ flex: 1, paddingTop: 8, maxWidth: 420 }}>
+                  <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.82", fontSize: 15 }}>
                     Give us a call or drop by anytime, we endeavour to answer all enquiries within 24 hours on business days. We will be happy to answer your questions.
                   </p>
                 </div>
@@ -83,37 +83,69 @@ export default function ContactPage() {
             </Reveal>
 
             {/* 4-column contact info */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: "40px 32px" }}>
               {contactInfo.map((item, i) => (
                 <Reveal key={i} direction="up" delay={i * 80}>
-                  <div>
-                    <div className="flex items-center gap-2 mb-3">
+                  <div
+                    style={{
+                      padding: "32px 0 32px",
+                      borderTop: "1px solid rgba(25,29,27,0.07)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: "50%",
+                        backgroundColor: "rgba(9,91,103,0.08)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginBottom: 16,
+                      }}
+                    >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="#095B67">
                         {item.icon}
                       </svg>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-lexend-var), 'Lexend', sans-serif",
-                          fontSize: 12,
-                          fontWeight: 500,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.08em",
-                          color: "#191D1B",
-                        }}
-                      >
-                        {item.label}:
-                      </span>
                     </div>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-lexend-var), 'Lexend', sans-serif",
+                        fontSize: 10,
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.14em",
+                        color: "#9a9b9a",
+                        marginBottom: 8,
+                      }}
+                    >
+                      {item.label}
+                    </p>
                     {item.href ? (
                       <a
                         href={item.href}
-                        style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.6", textDecoration: "none", display: "block" }}
-                        className="footer-contact-link"
+                        style={{
+                          fontWeight: 300,
+                          color: "#191D1B",
+                          lineHeight: "1.65",
+                          textDecoration: "none",
+                          display: "block",
+                          fontSize: 14,
+                          transition: "color 0.22s ease",
+                        }}
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.6", whiteSpace: "pre-line" }}>
+                      <p
+                        style={{
+                          fontWeight: 300,
+                          color: "#191D1B",
+                          lineHeight: "1.65",
+                          whiteSpace: "pre-line",
+                          fontSize: 14,
+                        }}
+                      >
                         {item.value}
                       </p>
                     )}
@@ -129,20 +161,20 @@ export default function ContactPage() {
           <div className="container-custom">
             <Reveal direction="up">
               <div className="text-center mb-16">
-                <p className="sub-label mb-4">Get In Touch</p>
+                <p className="sub-label mb-5" style={{ justifyContent: "center" }}>Get In Touch</p>
                 <h2
                   className="font-heading mb-4"
-                  style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: "1.15", color: "#191D1B" }}
+                  style={{ fontSize: "clamp(32px, 4vw, 54px)", lineHeight: "1.08", color: "#191D1B" }}
                 >
                   Drop Us a Line
                 </h2>
-                <p style={{ fontWeight: 300, color: "#5F6160", fontSize: 14 }}>
+                <p style={{ fontWeight: 300, color: "#9a9b9a", fontSize: 13, letterSpacing: "0.02em" }}>
                   Your email address will not be published. Required fields are marked *
                 </p>
               </div>
             </Reveal>
 
-            <div style={{ maxWidth: 860, margin: "0 auto", backgroundColor: "#ffffff", padding: "60px 60px" }}>
+            <div className="contact-form-card">
               <ContactForm />
             </div>
           </div>

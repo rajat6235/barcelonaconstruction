@@ -47,37 +47,42 @@ const instaImages = [
   "/uploads/2022/04/home1-insta5.jpg",
 ];
 
+const partnerLogos = [1, 2, 3, 4, 5, 6, 7];
+
 export default function HomePage() {
   return (
     <>
       <Header />
 
       <main>
-        {/* PAGE-LEVEL SCROLL PROGRESS BAR */}
         <ScrollProgress />
 
-        {/* HERO SLIDER */}
+        {/* ── HERO SLIDER ── */}
         <HeroSlider />
 
         {/* ── ABOUT SECTION ── */}
-        <section style={{ paddingTop: 150, paddingBottom: 150, backgroundColor: "#fff" }}>
+        <section style={{ paddingTop: 140, paddingBottom: 140, backgroundColor: "#fff" }}>
           <div className="container-custom">
             {/* Row 1 */}
-            <div className="flex flex-col lg:flex-row" style={{ paddingBottom: 100, alignItems: "flex-start" }}>
-              <Reveal direction="left" delay={0} className="lg:flex-none lg:w-1/2 lg:pr-24">
-                <p className="sub-label mb-4">About Barcelona Constructions</p>
+            <div
+              className="flex flex-col lg:flex-row about-intro-row"
+              style={{ paddingBottom: 100, alignItems: "flex-start", gap: 80 }}
+            >
+              <Reveal direction="left" delay={0} className="lg:flex-none" style={{ flex: "0 0 50%" }}>
+                <p className="sub-label mb-5">About Barcelona Constructions</p>
                 <h2
                   className="font-heading mb-6"
-                  style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: "1.15", color: "#191D1B" }}
+                  style={{ fontSize: "clamp(32px, 4vw, 54px)", lineHeight: "1.12", color: "#191D1B" }}
                 >
                   We Study the Best Way to Communicate a Product
                 </h2>
-                <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.7" }}>
+                <p style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.78", fontSize: 16 }}>
                   Uniting modern construction methods with a deep respect for traditional craftsmanship,
                   everything we make is designed to endure and bring joy for generations to come.
                 </p>
               </Reveal>
-              <Reveal direction="right" delay={120} className="hidden lg:block lg:flex-none lg:w-1/2">
+
+              <Reveal direction="right" delay={120} className="hidden lg:block" style={{ flex: 1 }}>
                 <Image
                   src="/uploads/2022/04/home1-image1.png"
                   alt="Interior design details"
@@ -90,7 +95,7 @@ export default function HomePage() {
             </div>
 
             {/* Row 2 */}
-            <div className="flex flex-col lg:flex-row items-start" style={{ gap: 80 }}>
+            <div className="about-row2 flex flex-col lg:flex-row items-start" style={{ gap: 80 }}>
               <Reveal direction="up" delay={0} className="lg:flex-none" style={{ flexBasis: "50%" }}>
                 <div className="relative" style={{ display: "inline-block" }}>
                   <Image
@@ -109,16 +114,21 @@ export default function HomePage() {
                     aria-label="Play video"
                   >
                     <span
-                      className="w-14 h-14 rounded-full flex items-center justify-center"
                       style={{
-                        border: "2px solid rgba(255,255,255,0.9)",
-                        backgroundColor: "rgba(255,255,255,0.18)",
-                        backdropFilter: "blur(6px)",
-                        WebkitBackdropFilter: "blur(6px)",
-                        transition: "transform 0.3s cubic-bezier(0.16,1,0.3,1), background-color 0.3s",
+                        width: 56,
+                        height: 56,
+                        borderRadius: "50%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        border: "1.5px solid rgba(255,255,255,0.85)",
+                        backgroundColor: "rgba(255,255,255,0.14)",
+                        backdropFilter: "blur(8px)",
+                        WebkitBackdropFilter: "blur(8px)",
+                        transition: "transform 0.38s cubic-bezier(0.16,1,0.3,1), background-color 0.32s ease",
                       }}
                     >
-                      <svg width="16" height="18" viewBox="0 0 16 18" fill="white">
+                      <svg width="14" height="16" viewBox="0 0 16 18" fill="white">
                         <path d="M0 0l16 9L0 18V0z" />
                       </svg>
                     </span>
@@ -128,12 +138,18 @@ export default function HomePage() {
 
               <Reveal direction="up" delay={160} className="lg:flex-none" style={{ flexBasis: "50%" }}>
                 <h3
-                  className="font-heading mb-4"
-                  style={{ fontSize: "clamp(18px, 2vw, 24px)", lineHeight: "1.45", color: "#095B67", fontStyle: "italic" }}
+                  className="font-heading mb-5"
+                  style={{
+                    fontSize: "clamp(18px, 2.2vw, 26px)",
+                    lineHeight: "1.48",
+                    color: "#095B67",
+                    fontStyle: "italic",
+                    letterSpacing: "-0.01em",
+                  }}
                 >
                   &ldquo;We are create buildings, furniture and interiors that connect people with the rhythms of nature.&rdquo;
                 </h3>
-                <p className="mb-8" style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.7" }}>
+                <p className="mb-8" style={{ fontWeight: 300, color: "#5F6160", lineHeight: "1.78", fontSize: 15 }}>
                   Working with the beauty and durability of wood, our design-led structures invite.
                 </p>
                 <Link href="/about-us" className="btn-primary">
@@ -144,18 +160,66 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ── PARTNER LOGOS ── */}
+        <section
+          style={{
+            backgroundColor: "#ffffff",
+            borderTop: "1px solid rgba(25,29,27,0.06)",
+            borderBottom: "1px solid rgba(25,29,27,0.06)",
+            padding: "52px 0",
+          }}
+        >
+          <div className="container-custom">
+            <Reveal direction="up" delay={0}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "clamp(24px, 4vw, 72px)",
+                  flexWrap: "wrap",
+                }}
+              >
+                {partnerLogos.map((n) => (
+                  <Image
+                    key={n}
+                    src={`/uploads/2022/04/home1-partner${n}.png`}
+                    alt={`Partner ${n}`}
+                    width={120}
+                    height={48}
+                    className="partner-logo"
+                    style={{ height: "auto", maxHeight: 40 }}
+                  />
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
         {/* ── DARK SERVICES SECTION ── */}
         <section style={{ backgroundColor: "#2F2F2F", position: "relative", overflow: "hidden" }}>
           <span
             className="watermark absolute"
-            style={{ fontSize: "clamp(150px,20vw,250px)", color: "rgba(255,255,255,0.025)", top: "5%", left: "-7%", zIndex: 0 }}
+            style={{
+              fontSize: "clamp(120px, 20vw, 260px)",
+              color: "rgba(255,255,255,0.025)",
+              top: "8%",
+              left: "-4%",
+              zIndex: 0,
+            }}
             aria-hidden="true"
           >
             Barcelona
           </span>
           <span
             className="watermark absolute"
-            style={{ fontSize: "clamp(150px,25vw,390px)", color: "rgba(255,255,255,0.025)", bottom: "2%", right: "-4%", zIndex: 0 }}
+            style={{
+              fontSize: "clamp(120px, 24vw, 400px)",
+              color: "rgba(255,255,255,0.025)",
+              bottom: "0%",
+              right: "-4%",
+              zIndex: 0,
+            }}
             aria-hidden="true"
           >
             Studio
@@ -175,27 +239,41 @@ export default function HomePage() {
             </div>
 
             {/* Center content */}
-            <div style={{ flex: "0 0 49%", padding: "120px 80px" }}>
+            <div className="services-center">
               <Reveal direction="up" delay={0}>
-                <p className="sub-label mb-4" style={{ color: "#ffffff" }}>What we do</p>
+                <p className="sub-label mb-5" style={{ color: "rgba(255,255,255,0.5)" }}>What we do</p>
                 <h2
-                  className="font-heading mb-10"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: "1.15", color: "#ffffff" }}
+                  className="font-heading mb-12"
+                  style={{ fontSize: "clamp(28px, 3.5vw, 46px)", lineHeight: "1.12", color: "#ffffff" }}
                 >
                   What We Offer for You
                 </h2>
               </Reveal>
 
               {services.map((service, i) => (
-                <Reveal key={i} direction="up" delay={i * 100 + 100}>
-                  <div style={{ marginBottom: i < services.length - 1 ? 36 : 0 }}>
+                <Reveal key={i} direction="up" delay={i * 100 + 80}>
+                  <div
+                    style={{
+                      marginBottom: i < services.length - 1 ? 40 : 0,
+                      paddingBottom: i < services.length - 1 ? 40 : 0,
+                      borderBottom: i < services.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
+                    }}
+                  >
                     <h3
                       className="font-heading mb-3"
                       style={{ fontSize: 20, fontWeight: 400, color: "#ffffff", lineHeight: "1.3" }}
                     >
                       {service.title}
                     </h3>
-                    <p style={{ fontWeight: 300, color: "rgba(255,255,255,0.58)", lineHeight: "1.7", fontSize: 15, marginBottom: 12 }}>
+                    <p
+                      style={{
+                        fontWeight: 300,
+                        color: "rgba(255,255,255,0.52)",
+                        lineHeight: "1.76",
+                        fontSize: 14,
+                        marginBottom: 14,
+                      }}
+                    >
                       {service.desc}
                     </p>
                     <Link href="/services-v1" className="services-learn-more">
@@ -221,14 +299,14 @@ export default function HomePage() {
         </section>
 
         {/* ── PROJECTS SECTION ── */}
-        <section style={{ backgroundColor: "#ffffff", paddingTop: 140, paddingBottom: 150 }}>
+        <section style={{ backgroundColor: "#ffffff", paddingTop: 140, paddingBottom: 140 }}>
           <div className="container-custom">
             <Reveal direction="up" delay={0}>
-              <div className="text-center mb-12" style={{ padding: "0 100px" }}>
-                <p className="sub-label mb-4">Our Projects</p>
+              <div className="projects-intro text-center" style={{ marginBottom: 56 }}>
+                <p className="sub-label mb-5" style={{ justifyContent: "center" }}>Our Projects</p>
                 <h2
                   className="font-heading"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 48px)", lineHeight: "1.2", color: "#191D1B" }}
+                  style={{ fontSize: "clamp(28px, 3.5vw, 50px)", lineHeight: "1.15", color: "#191D1B" }}
                 >
                   Here are Some of Our Favorite Projects We Completed for Many Clients Over the Years
                 </h2>
@@ -236,9 +314,9 @@ export default function HomePage() {
             </Reveal>
 
             {/* Row 1 */}
-            <div className="flex gap-0" style={{ paddingBottom: 4 }}>
+            <div className="flex" style={{ gap: 3, marginBottom: 3 }}>
               {portfolioImages.slice(0, 3).map((img, i) => (
-                <div key={i} className="project-card flex-1" style={{ minHeight: 280 }}>
+                <div key={i} className="project-card flex-1" style={{ minHeight: "clamp(200px, 22vw, 300px)" }}>
                   <Image
                     src={img.src}
                     alt={img.alt}
@@ -255,9 +333,9 @@ export default function HomePage() {
             </div>
 
             {/* Row 2 */}
-            <div className="flex gap-0" style={{ paddingBottom: 50 }}>
+            <div className="flex" style={{ gap: 3, marginBottom: 56 }}>
               {portfolioImages.slice(3, 6).map((img, i) => (
-                <div key={i} className="project-card flex-1" style={{ minHeight: 280 }}>
+                <div key={i} className="project-card flex-1" style={{ minHeight: "clamp(200px, 22vw, 300px)" }}>
                   <Image
                     src={img.src}
                     alt={img.alt}
@@ -288,14 +366,44 @@ export default function HomePage() {
 
         {/* ── INSTAGRAM GALLERY ── */}
         <section style={{ backgroundColor: "#ffffff" }}>
-          <div className="flex">
+          {/* Label row */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "40px 0 0",
+              gap: 16,
+            }}
+          >
+            <div style={{ width: 32, height: 1, backgroundColor: "rgba(25,29,27,0.15)" }} />
+            <span
+              style={{
+                fontFamily: "var(--font-lexend-var), 'Lexend', sans-serif",
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "#5F6160",
+              }}
+            >
+              Our Gallery
+            </span>
+            <div style={{ width: 32, height: 1, backgroundColor: "rgba(25,29,27,0.15)" }} />
+          </div>
+
+          <div className="flex" style={{ marginTop: 24 }}>
             {instaImages.map((src, i) => (
-              <div key={i} className="insta-card flex-1">
+              <div
+                key={i}
+                className="insta-card flex-1"
+                style={{ height: "clamp(120px, 15vw, 200px)" }}
+              >
                 <Image
                   src={src}
                   alt={`Gallery ${i + 1}`}
-                  width={170}
-                  height={116}
+                  width={220}
+                  height={200}
                   className="object-cover w-full h-full"
                   style={{ display: "block" }}
                 />

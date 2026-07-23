@@ -25,14 +25,16 @@ export default function PortfolioPage() {
           ]}
         />
 
-        <section style={{ backgroundColor: "#fff", paddingTop: 80 }}>
+        <section style={{ backgroundColor: "#fff", paddingTop: 100 }}>
           <div className="container-custom">
             <Reveal direction="up">
-              <div className="text-center" style={{ marginBottom: 48 }}>
-                <p className="sub-label mb-4" style={{ color: "#AB6447" }}>Our Portfolio</p>
+              <div className="text-center" style={{ marginBottom: 56 }}>
+                <p className="sub-label mb-5" style={{ color: "#AB6447", justifyContent: "center" }}>
+                  Our Portfolio
+                </p>
                 <h2
                   className="font-heading"
-                  style={{ fontSize: "clamp(28px, 4vw, 52px)", lineHeight: "1.2", color: "#191D1B" }}
+                  style={{ fontSize: "clamp(28px, 4vw, 54px)", lineHeight: "1.1", color: "#191D1B" }}
                 >
                   Some of Our Works and Case Studies for Clients
                 </h2>
