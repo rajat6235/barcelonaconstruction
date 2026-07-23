@@ -29,16 +29,50 @@ const labelStyle: React.CSSProperties = {
   marginBottom: 8,
 };
 
-export default function ContactForm() {
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
-  const [sent, setSent] = useState(false);
+type Status = "idle" | "loading" | "success" | "error";
 
-  const handleSubmit = (e: FormEvent) => {
+export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    website: "", // honeypot — never shown to users
+  });
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [fieldError, setFieldError] = useState<string | undefined>();
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setStatus("loading");
+    setErrorMsg("");
+    setFieldError(undefined);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(data.error ?? "Something went wrong. Please try again.");
+        setFieldError(data.field);
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+    } catch {
+      setErrorMsg("Network error. Please check your connection and try again.");
+      setStatus("error");
+    }
   };
 
-  if (sent) {
+  if (status === "success") {
     return (
       <div style={{ textAlign: "center", padding: "72px 20px" }}>
         <div
@@ -75,6 +109,18 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
+      {/* Honeypot — hidden from real users, bots fill it in */}
+      <input
+        type="text"
+        name="website"
+        value={formData.website}
+        onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+        style={{ display: "none" }}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
+
       <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "0 48px", marginBottom: 32 }}>
         <div style={{ marginBottom: 32 }}>
           <label style={labelStyle}>Full Name *</label>
@@ -82,7 +128,10 @@ export default function ContactForm() {
             type="text"
             placeholder="Your name"
             required
-            style={fieldStyle}
+            style={{
+              ...fieldStyle,
+              borderBottomColor: fieldError === "name" ? "#c0392b" : undefined,
+            }}
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             onFocus={(e) => { e.target.style.borderColor = "#095B67"; }}
@@ -95,7 +144,10 @@ export default function ContactForm() {
             type="email"
             placeholder="your@email.com"
             required
-            style={fieldStyle}
+            style={{
+              ...fieldStyle,
+              borderBottomColor: fieldError === "email" ? "#c0392b" : undefined,
+            }}
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             onFocus={(e) => { e.target.style.borderColor = "#095B67"; }}
@@ -118,14 +170,16 @@ export default function ContactForm() {
       </div>
 
       <div style={{ marginBottom: 48 }}>
-        <label style={labelStyle}>Your Message</label>
+        <label style={labelStyle}>Your Message *</label>
         <textarea
           placeholder="Tell us about your project..."
           rows={6}
+          required
           style={{
             ...fieldStyle,
             resize: "none",
             lineHeight: "1.7",
+            borderBottomColor: fieldError === "message" ? "#c0392b" : undefined,
           }}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -134,9 +188,20 @@ export default function ContactForm() {
         />
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-        <button type="submit" className="btn-primary">
-          Send Message
+      {status === "error" && (
+        <p style={{ color: "#c0392b", fontSize: 14, marginBottom: 20, fontWeight: 400 }}>
+          {errorMsg}
+        </p>
+      )}
+
+      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "16px 24px" }}>
+        <button
+          type="submit"
+          className="btn-primary"
+          disabled={status === "loading"}
+          style={{ opacity: status === "loading" ? 0.7 : 1, flexShrink: 0 }}
+        >
+          {status === "loading" ? "Sending…" : "Send Message"}
         </button>
         <p style={{ fontWeight: 300, color: "#9a9b9a", fontSize: 12, lineHeight: "1.5" }}>
           We respond within 24 hours on business days

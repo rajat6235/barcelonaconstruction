@@ -8,6 +8,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import ExpertiseSection from "@/components/ExpertiseSection";
 import { Reveal } from "@/components/Reveal";
 import ScrollProgress from "@/components/ScrollProgress";
+import ContactForm from "@/app/contact-us/ContactForm";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -409,6 +410,28 @@ export default function HomePage() {
                 />
               </div>
             ))}
+          </div>
+        </section>
+        {/* ── CONTACT SECTION ── */}
+        <section style={{ backgroundColor: "#EFEEED", paddingTop: 100, paddingBottom: 100 }}>
+          <div className="container-custom">
+            <Reveal direction="up">
+              <div className="text-center mb-16">
+                <p className="sub-label mb-5" style={{ justifyContent: "center" }}>Get In Touch</p>
+                <h2
+                  className="font-heading mb-4"
+                  style={{ fontSize: "clamp(32px, 4vw, 54px)", lineHeight: "1.08", color: "#191D1B" }}
+                >
+                  Drop Us a Line
+                </h2>
+                <p style={{ fontWeight: 300, color: "#9a9b9a", fontSize: 13, letterSpacing: "0.02em" }}>
+                  Your email address will not be published. Required fields are marked *
+                </p>
+              </div>
+            </Reveal>
+            <div className="contact-form-card">
+              <ContactForm />
+            </div>
           </div>
         </section>
       </main>

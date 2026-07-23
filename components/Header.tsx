@@ -220,7 +220,7 @@ export default function Header() {
               fontWeight: 300,
             }}
           >
-            +1 (306) 717-1994
+            +1 (306) 717-1991
           </p>
         </div>
       </div>
